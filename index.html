@@ -61,7 +61,7 @@
 					</p>
 				</section>
 				<section data-background-image="images/slide4.jpg">
-					<h3 style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; text-align: center;">¿Que tiene?</h3><br>
+					<h3 style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; text-align: center;">¿Cómo se caracteriza?</h3><br>
 					<div style="float: left; font-size: 50%;">
 					<ul>
 						<li> Radiación prácticamente igual a la de
@@ -74,6 +74,40 @@
 					</ul>
 				</div>
 					<img alt="image" src="images/cosmic_spectrum.jpg" height="400" style="position: absolute; margin-left: -5%; margin-top: -10%;"/>
+				</section>
+				<section>
+					<h3 style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; text-align: center;">Ruido Intrínseco: Extrema diferencia de temperatura</h3><br>
+					<p>Unos pequelos cálculos....</p>
+				</section>
+				<section>
+					<p> ¿Cuantos $ \frac{w}{m^{2}} $ le llegarán a nuestra PCB ?</p>
+					<div  style="position: absolute; margin-left: -3%; margin-top: 6%; width : 57%">
+						<img alt="image" src="images/Solar_Spectrum.png" />
+					</div>
+					<div  style="position: absolute; margin-left: 47%; margin-top: 6%; width : 57%">
+						<img alt="image" src="images/pvc_abs.gif"/>
+					</div>
+				</section>
+				<section>
+					<p> \[ E_{absorbed} = \int_{0}^{\infty} SolarSpectrum(\lambda )PvcAbsortivity(\lambda )d \lambda \] </p>
+					<p> Si hacemos la extrema simplificación de suponer que el rango de absorción del material del PVC llega desde $0.2nm$ hasta $0.3nm$ y que en ese rango
+						el espectro solar crece linearmente desde $0.28nm$ hasta $0.32nm$ ... (con una sencilla regresión lineal)</p>
+					<p> \[ E_{absorbed} = \int_{0.28}^{0.3} (\lambda - 0.28) \frac{0.5-0.2}{0.32-0.28} \times 0.8d \lambda  = 1.5 \times 10^{-3} \frac{w}{m^{2}} \] </p>
+				</section>
+				<section>
+					<div  style="position: absolute; margin-left: 47%; margin-top: -16%; width : 57%">
+						<img alt="image" src="images/draw1.png"/>
+					</div>
+					<ul style= "margin-left: -51%; position: absolute; margin-top: 9%;">
+						<li>$E_{absorbed} = q'' +  E_{radiated}$</li>
+						<li>$E_{radiated} = \epsilon k T^4$ </li>
+						<li>Donde $\epsilon = 0.91$ </li>
+						<li>$q'' = k \frac{\Delta T}{\Delta X}$</li>
+						<li>Donde k = 0.19W/m.K y el grosor medio de una PCB siendo 1.54cm</li>
+						<li>$ 1.5 \times 10^{-3} \frac{w}{m^{2}} = 0.19 \frac{\ T_1-2.6}{0.0154}+ 0.91  K T^4_{1}$ </li>
+
+					</ul>
+
 				</section>
 				<section>
 					<ul>
@@ -90,8 +124,14 @@
 			Reveal.initialize({
 				history: true,
 
+    		math: {
+        		mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+        		config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+    		},
+
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
+					{ src: 'plugin/math/math.js', async: true },
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
