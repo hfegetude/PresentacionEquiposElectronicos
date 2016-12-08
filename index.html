@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Equipos Electronicos.js</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
@@ -73,7 +73,7 @@
 							para aplicaciones de ingeniera </li>
 					</ul>
 				</div>
-					<img alt="image" src="images/cosmic_spectrum.jpg" height="400" style="position: absolute; margin-left: -5%; margin-top: -10%;"/>
+					<img alt="image" src="images/cosmic_spectrum.jpg" height="400" style="position: absolute; margin-left: -5%; margin-top: -5%;"/>
 				</section>
 				<section>
 					<h3 style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; text-align: center;">Ruido Intrínseco: Extrema diferencia de temperatura</h3><br>
@@ -89,13 +89,17 @@
 					</div>
 				</section>
 				<section>
+					<div style=" font-size:60%" >
 					<p> \[ E_{absorbed} = \int_{0}^{\infty} SolarSpectrum(\lambda )PvcAbsortivity(\lambda )d \lambda \] </p>
-					<p> Si hacemos la extrema simplificación de suponer que el rango de absorción del material del PVC llega desde $0.2nm$ hasta $0.3nm$ y que en ese rango
-						el espectro solar crece linearmente desde $0.28nm$ hasta $0.32nm$ ... (con una sencilla regresión lineal)</p>
-					<p> \[ E_{absorbed} = \int_{0.28}^{0.3} (\lambda - 0.28) \frac{0.5-0.2}{0.32-0.28} \times 0.8d \lambda  = 1.5 \times 10^{-3} \frac{w}{m^{2}} \] </p>
-				</section>
+					<p> Haciendo una regresión lineal...</p>
+					<p> \[ E_{absorbed1} = \int_{0.28}^{0.3} (\lambda - 0.28) \frac{0.5-0.2}{0.32-0.28}  0.8d \lambda  = 1.5 \times 10^{-3} \frac{w}{m^{2}} \] </p>
+					<p> \[ E_{absorbed2} = \int_{0.3}^{0.48} (\lambda - 0.28) (\frac{2-0.2}{0.48-0.28}+0.2) (\lambda - 0.3)(\frac{0.45-0.8}{0.7-0.3}+0.8)  d \lambda  = 1.27 \times 10^{-5} \frac{w}{m^{2}} \] </p>
+					<p> \[ E_{absorbed3} = \int_{0.48}^{1.44} (\lambda - 0.48) (\frac{0.2-2}{1.44-0.48}+2)(\lambda - 0.3)(\frac{0.45-0.8}{0.7-0.3}+0.8) d \lambda  = 0.2 \frac{w}{m^{2}} \] </p>
+					<p> \[ E_{absorbed} = E_{absorbed1}+E_{absorbed2}+E_{absorbed3} = 0.2015 \frac{w}{m^{2}} \]
+				</div>
+		  	</section>
 				<section>
-					<div  style="position: absolute; margin-left: 47%; margin-top: -16%; width : 57%">
+					<div  style="position: absolute; margin-left: 47%; margin-top: -13%; width : 57%">
 						<img alt="image" src="images/draw1.png"/>
 					</div>
 					<ul style= "margin-left: -51%; position: absolute; margin-top: 9%;">
@@ -104,10 +108,83 @@
 						<li>Donde $\epsilon = 0.91$ </li>
 						<li>$q'' = k \frac{\Delta T}{\Delta X}$</li>
 						<li>Donde k = 0.19W/m.K y el grosor medio de una PCB siendo 1.54cm</li>
-						<li>$ 1.5 \times 10^{-3} \frac{w}{m^{2}} = 0.19 \frac{\ T_1-2.6}{0.0154}+ 0.91  K T^4_{1}$ </li>
-
+						<li>$ 0.2 \frac{w}{m^{2}} = 0.19 \frac{\ T_1-2.6}{0.0154}+ 0.91  K T^4_{1}$ </li>
+						<li>$T_1 = 2.612K$, enfriamiento mínimo</li>
 					</ul>
+				</section>
+				<section>
+					<p> Entonces.....? </p>
+					<img class="fragment" alt="ige" src="images/fail.gif"/>
+					<p class="fragment"> ¡La debilidad se encuentra en el enlace radioeléctrico! </p>
+				</section>
+				<section data-background-image="images/slides_sat.jpg">
+					<h1> Tipos de enlaces de satélite </h1>
+				</section>
+				<section data-background-image="images/slides_sat.jpg">
+					<h3> Point to Multipoint </h3>
+					<div>
+					<ul >
+						<li> Distribución de video
+							<ul>
+								<li> Retránsmisión de video </li>
+								<li> Blackhaul </li>
+							</ul></li>
+							<li> Servicios de broadcast</li>
+							<li> Comunicaciones móbiles </li>
+						</div>
+						<img  src="images/broadcast.gif"/>
+				</section>
+				<section data-background-image="images/slides_sat.jpg">
+					<h3> Point to Point </h3>
+					<div>
+					<ul >
+						<li> Enlace de tierra satelite de poca utilidad</li>
+							<li> Enlace entre torres de comunicación</li>
+							<li> Comunicación entre redes de alta velocidad </li>
+							<li> Comunicación entre satélites </li>
 
+						</div>
+						<img  style="width:50%"src="images/point-to-point.jpg"/>
+				</section>
+				<section data-background-image="images/slides_sat.jpg">
+					<h3> VSAT </h3>
+					<div>
+					<ul >
+						<li> Lleva conexión a localizaciones remotas</li>
+						<li> Comunica por un lado todos los clientes en forma de hub</li>
+						<li> Por otro establece una conexión punto a punto con la estación </li>
+
+
+						</div>
+						<img  style="width:50%"src="images/vsat.gif"/>
+				</section>
+				<section data-background-image="images/slides_sat.jpg">
+					<h3> ¿Qué puede afectar a nuestro enlace? </h3>
+				</section>
+				<section data-background-image="images/slides_sat.jpg">
+					<p> Perdidas de espacio libre: </p>
+					<p> Potencia recibida : $P_{r}=\frac{P_{t}}{4 \pi R^{2}}$ </p>
+					<p> Atenuación del espacio libre : $a_{0}=(\frac{4 \pi R f}{f})^2$ </p>
+					<img src="graph-geo-leo"/>
+				</section>
+				<section data-background-image="images/slides_sat.jpg">
+					<p> Absorción: </p>
+					<p> La absorción de RF varía tanto con el ángulo cenital como con la atmósfera (Agua y Óxigeno) </p>
+					<p> $A_{a}=(\frac{8a_{O} + 2a_{w}}{\sin \theta})$ </p>
+					<img src="images/attenuation-h2o.png"/>
+				</section>
+				<section data-background-image="images/slides_sat.jpg">
+					<p> Lluvia: </p>
+					<p> Segunda causante de perdidas junto a las perdidas de espacio libre. </p>
+					<p> Afecta a la polarización de la señal</p>
+					<p> Díficil de predecir puesto que el tamaño de gota afecta a como atenua esta </p>
+					<img src="images/rain-attenuation.png"/>
+				</section>
+				<section data-background-image="images/slides_sat.jpg">
+					<p> Absorción: </p>
+					<p> La absorción de RF varía tanto con el ángulo cenital como con la atmósfera (Agua y Óxigeno) </p>
+					<p> $A_{a}=(\frac{8a_{O} + 2a_{w}}{\sin \theta})$ </p>
+					<img src="images/attenuation-h2o.png"/>
 				</section>
 				<section>
 					<ul>
